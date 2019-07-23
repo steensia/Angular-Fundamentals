@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { IEvent } from './shared';
 
 @Component({
     selector: 'event-thumbnail',
@@ -23,44 +24,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
         </div>
     `,
     styles: [`
-        .thumbnail { min-height: 210px; }
+        .thumbnail { min-height: 250px; }
         .pad-left { margin-left: 10px; }
         .well div { color: #bbb; }
     `]
 })
 
 export class EventThumbnailComponent {
-    @Input() event:any
+    @Input() event:IEvent
 
-    // getStartTimeClass(){
-    //     Option #1
-    //     const isEarlyStart = this.event && this.event.time === '8:00 am'
-    //     return {green: isEarlyStart, bold: isEarlyStart}
-
-    //     Option #2
-    //     if(this.event && this.event.time === '8:00 am')
-    //         return 'green bold'
-    //     return ''
-
-    //     Option #3
-    //     if(this.event && this.event.time === '8:00 am')
-    //         return ['green', 'bold']
-    //     return []
-
-    //     Option #4
-    //     return this.event && this.event.time === '8:00 am' ? 'green bold' : ''
-
-    //     Option #5
-    //     return this.event && this.event.time === '8:00 am' ?  {color: '#003300', 'font-weight': 'bold' } : {}
-    // }
-    
     getStartTimeStyle(){
-        // Option #1
-        // if(this.event && this.event.time === '8:00 am')
-        //     return { color: '#00300', 'font-weight': 'bold' }
-        // return {}
-
-        // Option #2
         return this.event && this.event.time === '8:00 am' ?  {color: '#003300', 'font-weight': 'bold' } : {}
     }
 }
