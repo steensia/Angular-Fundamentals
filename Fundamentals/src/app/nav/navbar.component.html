@@ -26,14 +26,16 @@
         <div class="navbar-header navbar-right">
           <ul class="nav navbar-nav">
             <li>
-              <a *ngIf="!auth.isAuthenticated()"[routerLink]="['user/login']">Login</a>
-              <a *ngIf="auth.isAuthenticated()" [routerLink]="['user/profile']">Welcome {{auth.currentUser.firstName}}</a>
+              <a *ngIf="auth.isAuthenticated()" [routerLink]="
+                ['user/profile']">Welcome {{auth.currentUser?.firstName}}</a>
+              <a *ngIf="!auth.isAuthenticated()" [routerLink]="
+                ['user/login']">Login</a>
             </li>
           </ul>
         </div>
-        <form id="searchForm"  class="navbar-form navbar-right"  >
+        <form id="searchForm" (ngSubmit)="searchSessions(searchTerm)" class="navbar-form navbar-right"  >
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search Sessions" >
+            <input [(ngModel)]="searchTerm" [ngModelOptions]="{standalone:true}" type="text" class="form-control" placeholder="Search Sessions" >
           </div>
           <button class="btn btn-default" >
             Search
