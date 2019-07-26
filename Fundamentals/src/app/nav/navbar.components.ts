@@ -20,7 +20,6 @@ export class NavBarComponent{
     foundSessions:ISession[];
 
     constructor(private auth:AuthService, private eventService:EventService){
-
     }
 
     searchSessions(searchTerm){
@@ -28,6 +27,5 @@ export class NavBarComponent{
             (sessions => {
             this.foundSessions = sessions;
             })
-        console.log(this.foundSessions);
     }
 }
