@@ -1,11 +1,14 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "one-variable-per-declaration": false,
+    "prefer-const": false,
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
       "severity": "warning"
     },
+    "curly": false,
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
@@ -18,7 +21,6 @@
     "component-selector": [
       true,
       "element",
-      "app",
       "kebab-case"
     ],
     "import-blacklist": [
@@ -43,6 +45,8 @@
         ]
       }
     ],
+    "no-string-literal": false,
+    "no-angle-bracket-type-assertion": false,
     "no-consecutive-blank-lines": false,
     "no-console": [
       true,
@@ -70,7 +74,7 @@
     "ordered-imports": false,
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,

@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
-import { IEvent } from './shared';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { IEvent } from "./shared";
 
 @Component({
-    selector: 'event-thumbnail',
+    selector: "event-thumbnail",
     template: `
         <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
             <h2>{{event?.name | uppercase}}</h2>
@@ -18,8 +18,8 @@ import { IEvent } from './shared';
                 <span>Location: {{event?.location?.address}}</span>
                 <span class="pad-left"> {{event?.location?.city}}, {{event?.location?.country}}</span>
             </div>
-            <div  *ngIf="event?.onlineUrl"> 
-                Online URL: {{event?.onlineUrl}} 
+            <div  *ngIf="event?.onlineUrl">
+                Online URL: {{event?.onlineUrl}}
             </div>
         </div>
     `,
@@ -31,9 +31,9 @@ import { IEvent } from './shared';
 })
 
 export class EventThumbnailComponent {
-    @Input() event:IEvent
+    @Input() event: IEvent;
 
-    getStartTimeStyle(){
-        return this.event && this.event.time === '8:00 am' ?  {color: '#003300', 'font-weight': 'bold' } : {}
+    getStartTimeStyle() {
+        return this.event && this.event.time === "8:00 am" ?  {color: "#003300", "font-weight": "bold" } : {};
     }
 }

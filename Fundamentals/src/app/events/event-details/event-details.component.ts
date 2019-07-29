@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { EventService } from '../shared/event.service'
-import { ActivatedRoute, Params } from '@angular/router'
-import { IEvent, ISession } from '../shared';
+import { Component, OnInit } from "@angular/core";
+import { EventService } from "../shared/event.service";
+import { ActivatedRoute, Params } from "@angular/router";
+import { IEvent, ISession } from "../shared";
 
 @Component ({
-    templateUrl: './event-details.component.html',
+    templateUrl: "./event-details.component.html",
     styles: [`
         .container { padding-left: 20px; padding-right: 20px }
         .event-image { height: 100px; }
@@ -12,43 +12,43 @@ import { IEvent, ISession } from '../shared';
     `]
 })
 
-export class EventDetailsComponent implements OnInit{
-    event:IEvent
-    addMode:boolean
-    filterBy:string = 'all';
-    sortBy:string ='votes'
+export class EventDetailsComponent implements OnInit {
+    event: IEvent;
+    addMode: boolean;
+    filterBy = "all";
+    sortBy = "votes";
 
-    constructor(private eventService: EventService, private route: ActivatedRoute){
+    constructor(private eventService: EventService, private route: ActivatedRoute) {
 
     }
 
-    addSession(){
-        this.addMode = true
+    addSession() {
+        this.addMode = true;
     }
 
-    saveNewSession(session:ISession){
-        const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id))
-        session.id = nextId
-        this.event.sessions.push(session)
+    saveNewSession(session: ISession) {
+        const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
+        session.id = nextId;
+        this.event.sessions.push(session);
         this.eventService.saveEvent(this.event).subscribe();
-        this.addMode = false
+        this.addMode = false;
     }
 
     cancelAddSession() {
-        this.addMode = false
+        this.addMode = false;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.route.data.forEach((data) => {
-            this.event = data['event'];
+            this.event = data.event;
             this.setDefaultState();
-        })
+        });
     }
-    
-    setDefaultState(){
+
+    setDefaultState() {
         this.addMode = false;
-        this.filterBy = 'all';
-        this.sortBy = 'votes';
+        this.filterBy = "all";
+        this.sortBy = "votes";
     }
 }
 
