@@ -38,6 +38,8 @@ describe("SessionListComponentIntegrated", () => {
                 { provide: VoterService, useValue: mockVoterService }
             ],
             schemas: [
+                // Utilized for ignoring components we don't want to test (Upvote/CollabsibleWell)
+                // *DRAWBACK* - Can hide problems like having to import FormsModule
                 NO_ERRORS_SCHEMA
             ]
         });
@@ -63,8 +65,28 @@ describe("SessionListComponentIntegrated", () => {
             component.ngOnChanges();
             fixture.detectChanges();
 
+            // Option #1 without nativeElement
             // expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
+
+            // Option #2 with debugElement
             expect(debugEl.query(By.css("[well-title]")).nativeElement.textContent).toContain("Session 1");
+        });
+
+        it("should have the correct session body", () => {
+            component.sessions = [{ id: 3, name: "Session 2",
+                presenter: "Joe", duration: 2, level: "intermediate",
+                abstract: "This is a test abstract", voters: ["john", "bob"]}];
+            component.filterBy = "all";
+            component.sortBy = "name";
+            component.eventId = 4;
+
+            component.ngOnChanges();
+            fixture.detectChanges();
+
+            expect(element.querySelector("h6[id='presenter']").textContent).toContain("Joe");
+            expect(element.querySelector("span[id='level']").textContent).toContain("intermediate");
+            expect(element.querySelector("span[id='duration']").textContent).toContain("One Hour");
+            expect(element.querySelector("p[id='abstract']").textContent).toContain("This is a test");
         });
     });
 });
