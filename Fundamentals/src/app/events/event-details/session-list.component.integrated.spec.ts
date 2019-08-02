@@ -10,7 +10,7 @@ import { DurationPipe } from "../shared";
 import { CollapsibleWellComponent } from "src/app/common";
 
 
-describe("SessionListCOmponent", () => {
+describe("SessionListComponentIntegrated", () => {
     let fixture: ComponentFixture<SessionListComponent>;
     let component: SessionListComponent;
     let element: HTMLElement;

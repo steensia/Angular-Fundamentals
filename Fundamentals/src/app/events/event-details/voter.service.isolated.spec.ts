@@ -34,6 +34,22 @@ describe("VoterService", () => {
     });
 
     describe("addVoter", () => {
+
+        it("should add the voter to the list of voters", () => {
+            const session = { id: 4, voters: ["Jon", "Jeremy"]};
+            mockHttp.post.and.returnValue(of(false));
+
+            voterService.addVoter(7, session as ISession, "Steen");
+
+            expect(session.voters.length).toBe(3);
+            expect(session.voters[2]).toBe("Steen");
+
+            voterService.addVoter(9, session as ISession, "Stephan");
+
+            expect(session.voters.length).toBe(4);
+            expect(session.voters[3]).toBe("Stephan");
+        });
+
         it("should call http.post with the right URL", () => {
             const session = { id: 6, voters: ["john"]};
             mockHttp.post.and.returnValue(of(false));

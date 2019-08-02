@@ -2,7 +2,7 @@ import { SessionListComponent } from "./session-list.component";
 import { ISession } from "../shared/event.model";
 
 
-describe("SessionListComponent", () => {
+describe("SessionListComponentIsolated", () => {
     let component: SessionListComponent;
     let mockAuthService, mockVoterService;
 
